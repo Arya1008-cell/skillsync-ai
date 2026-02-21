@@ -12,7 +12,7 @@ llm = ChatGoogleGenerativeAI(
 
 def generate_career_recommendation(data):
 
-    prompt = f"""
+   prompt = f"""
 You are an expert AI Career Counselor.
 
 Student Information:
@@ -28,20 +28,17 @@ Personality: {data['personality_answers']}
 Aptitude Score: {data['aptitude_score']} out of 5
 
 Instructions:
-- NO conversational greetings or intro paragraphs (e.g., do not say "Hello..."). 
-- Start immediately with the 3 career recommendations.
-- Keep descriptions extremely brief and strictly standardized.
-- Do NOT use markdown symbols like * or #. Use plain text spacing.
+- NO conversational greetings or intro paragraphs. Start immediately with the careers.
+- Output the response in clean, structured Markdown format.
+- Keep descriptions extremely brief and to the point.
 
 Format each of the 3 careers EXACTLY like this template:
 
-CAREER 1: [Insert Career Name]
-Why Suitable: [Exactly 1 crisp sentence explaining the match]
-Required Skills: [Comma-separated list of 3-4 key skills]
-Roadmap: [Exactly 1 brief sentence on the next step to take]
-Future Scope: [Exactly 1 brief sentence on industry demand]
---------------------------------------------------
+### 1. [Insert Career Name]
+* **Why Suitable:** [Exactly 1 crisp sentence explaining the match]
+* **Required Skills:** [Comma-separated list of 3-4 key skills]
+* **Roadmap:** [Exactly 1 brief sentence on the next step to take]
+* **Future Scope:** [Exactly 1 brief sentence on industry demand]
 """
-
-    response = llm.invoke(prompt)
-    return response.content
+   response = llm.invoke(prompt)
+   return response.content

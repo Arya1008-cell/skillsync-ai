@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Your Results - SkillSync</title>
@@ -7,39 +7,57 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     
     <style>
-        /* Hide the buttons when the user prints/saves to PDF */
+        /* Hide buttons when saving to PDF */
         @media print {
-            .no-print {
-                display: none !important;
-            }
-            body {
-                background: white;
-                color: black;
-            }
-            .prose-invert {
-                filter: invert(1);
-            }
+            .no-print { display: none !important; }
+            body { background: white; color: black; }
+            .prose-invert { filter: invert(1); }
+        }
+
+        /* Custom styling to make the AI output look highly structured and compact */
+        .custom-prose h3 {
+            color: #60a5fa; /* Bright Blue */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+            border-bottom: 1px solid #1e3a8a;
+            padding-bottom: 0.25rem;
+        }
+        .custom-prose p {
+            margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .custom-prose ul {
+            margin-top: 0.25rem;
+            margin-bottom: 1.25rem;
+        }
+        .custom-prose li {
+            margin-top: 0.15rem;
+            margin-bottom: 0.15rem;
+        }
+        .custom-prose strong {
+            color: #93c5fd; /* Light Blue for bold text */
         }
     </style>
 </head>
 
 <body class="bg-gradient-to-br from-black via-slate-900 to-blue-950 min-h-screen p-6 flex flex-col items-center justify-center">
 
-    <div class="max-w-4xl w-full bg-black/80 p-10 rounded-2xl shadow-2xl border border-blue-500/30">
+    <div class="max-w-4xl w-full bg-black/80 p-8 md:p-10 rounded-2xl shadow-2xl border border-blue-500/30">
         
-        <h2 class="text-4xl font-bold text-center text-blue-400 mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-400 mb-6 pb-4 border-b border-blue-900/50">
             Your Career Roadmap 🎯
         </h2>
 
-        <div id="displayResult" class="prose prose-invert prose-blue max-w-none text-blue-100 text-lg mb-8">
+        <div id="displayResult" class="prose prose-invert max-w-none text-slate-300 text-[15px] leading-relaxed custom-prose mb-8">
             Loading your results...
         </div>
 
-        <div class="flex justify-center gap-4 mt-8 no-print">
-            <button onclick="window.print()" class="bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-xl text-white font-bold transition shadow-lg">
+        <div class="flex flex-wrap justify-center gap-4 mt-8 no-print border-t border-blue-900/50 pt-6">
+            <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 px-6 py-3 rounded-xl text-white font-semibold transition shadow-lg border border-slate-600">
                 📄 Save as PDF
             </button>
-            <a href="assessment.html" class="bg-blue-700 hover:bg-blue-800 px-8 py-3 rounded-xl text-white font-bold transition shadow-lg">
+            <a href="assessment.html" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-xl text-white font-bold transition shadow-lg">
                 Retake Assessment
             </a>
         </div>
