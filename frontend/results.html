@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Your Results - SkillSync</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <style>
+        /* Hide the buttons when the user prints/saves to PDF */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .prose-invert {
+                filter: invert(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-black via-slate-900 to-blue-950 min-h-screen p-6 flex flex-col items-center justify-center">
+
+    <div class="max-w-4xl w-full bg-black/80 p-10 rounded-2xl shadow-2xl border border-blue-500/30">
+        
+        <h2 class="text-4xl font-bold text-center text-blue-400 mb-8">
+            Your Career Roadmap 🎯
+        </h2>
+
+        <div id="displayResult" class="prose prose-invert prose-blue max-w-none text-blue-100 text-lg mb-8">
+            Loading your results...
+        </div>
+
+        <div class="flex justify-center gap-4 mt-8 no-print">
+            <button onclick="window.print()" class="bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-xl text-white font-bold transition shadow-lg">
+                📄 Save as PDF
+            </button>
+            <a href="assessment.html" class="bg-blue-700 hover:bg-blue-800 px-8 py-3 rounded-xl text-white font-bold transition shadow-lg">
+                Retake Assessment
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            // 1. Grab the raw text from memory
+            const savedResult = localStorage.getItem("careerResult");
+            const displayDiv = document.getElementById("displayResult");
+
+            if (savedResult) {
+                // 2. Convert Markdown to HTML and inject it
+                displayDiv.innerHTML = marked.parse(savedResult);
+                
+                // 3. Clear memory
+                localStorage.removeItem("careerResult");
+            } else {
+                displayDiv.innerHTML = "<p>No results found. Please take the assessment first!</p>";
+            }
+        };
+    </script>
+
+</body>
+</html>
