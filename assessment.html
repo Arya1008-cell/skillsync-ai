@@ -79,43 +79,47 @@ function loadAptitude(){
 
     if(level==="10th"){
         questions=[
-            ["1. 15 + 5 = ?", "20", 1, "25", 0],
-            ["2. A square has how many sides?", "4", 1, "5", 0],
-            ["3. 10 × 2 = ?", "20", 1, "30", 0],
-            ["4. The sun rises from the?", "East", 1, "West", 0],
-            ["5. 5² = ?", "25", 1, "20", 0]
+            ["1. Basic Math: If a dozen apples cost ₹120, how much do 3 apples cost?", "₹30", 1, "₹40", 0],
+            ["2. Logical Pattern: What number comes next: 5, 10, 15, 20, ...?", "25", 1, "30", 0],
+            ["3. Verbal Analogy: 'Bird' is to 'Fly' as 'Fish' is to...?", "Swim", 1, "Walk", 0],
+            ["4. Problem Solving: A train travels at 60 km/hr. How far will it travel in 2 hours?", "120 km", 1, "60 km", 0],
+            ["5. English: Which word means the opposite of 'Happy'?", "Sad", 1, "Joyful", 0]
         ];
-    }
+    } 
+
 
     if(level==="12th"){
         questions=[
-            ["1. If 2x + 4 = 10, what is x?", "3", 1, "2", 0],
-            ["2. What is the derivative of x²?", "2x", 1, "x", 0],
-            ["3. What comes next: 3, 6, 12, ?", "24", 1, "18", 0],
-            ["4. Formula for the area of a circle?", "πr²", 1, "2πr", 0],
-            ["5. Probability of getting heads on a coin flip?", "1/2", 1, "1/3", 0]
+            ["1. Ratio: The ratio of boys to girls in a class is 3:2. If there are 30 students total, how many are boys?", "18", 1, "12", 0],
+            ["2. Logic: If Person A is taller than B, and B is taller than C, who is the shortest?", "Person C", 1, "Person A", 0],
+            ["3. Percentages: If 20% of a number is 50, what is the complete number?", "250", 1, "100", 0],
+            ["4. Pattern: What letter comes next in the sequence: A, C, E, G, ...?", "I", 1, "H", 0],
+            ["5. Vocabulary: Which word means the opposite of 'Abundant'?", "Scarce", 1, "Plentiful", 0]
         ];
     }
+
 
     if(level==="undergraduate"){
         questions=[
             ["1. Logical Sequence: What comes next in the series: 2, 6, 12, 20, X??", "30", 1, "28", 0],
-            ["2. SQL is primarily used for?", "Database Management", 1, "UI Design", 0],
-            ["3. What does CPU stand for?", "Central Processing Unit", 1, "Computer Processing Unit", 0],
-            ["4. HTTP stands for?", "HyperText Transfer Protocol", 1, "High Text Transfer", 0],
-            ["5. Standard deviation measures what?", "Data Spread", 1, "Data Mean", 0]
+            ["2. If the probability of an event happening is 0.2, what is the probability of it NOT happening?", "0.8", 1, "0.0", 0],
+            ["3. Quantitative: If a product costs ₹400 and is discounted by 25%, what is the final price?", "300", 1, "350", 0],
+            ["4. Direction: If you walk North, turn right, walk forward, and then turn right again, which direction are you facing??", "south", 1, "east", 0],
+            ["5. Analytical: If 5 machines take 5 minutes to make 5 devices, how long would it take 100 machines to make 100 devices?", "5 minutes", 1, "100 minutes Mean", 0]
         ];
     }
 
     if(level==="postgraduate"){
         questions=[
-            ["1. Regression algorithms are primarily used for?", "Prediction", 1, "Sorting", 0],
-            ["2. AI is considered a subset of?", "Computer Science", 1, "Physics", 0],
-            ["3. Big-O notation describes?", "Algorithm efficiency", 1, "Memory size limitations", 0],
-            ["4. Neural networks are inspired by?", "The Human Brain", 1, "CPU Architecture", 0],
-            ["5. Cloud computing primarily offers?", "On-demand computing services", 1, "Hardware components only", 0]
+            ["1. Cognitive Math: A bat and a ball cost ₹110 in total. The bat costs ₹100 more than the ball. How much does the ball cost?", "₹5", 1, "₹10", 0],
+            ["2. Syllogism: All cars are vehicles. No vehicle is a bicycle. Therefore, no car is a bicycle.", "True", 1, "False", 0],
+            ["3. Odd One Out: Which number does not belong in this group: 9, 16, 25, 36, 42, 49?", "42", 1, "36", 0],
+            ["4. Advanced Logic: If 'A + B' means A is the brother of B, and 'A × B' means A is the father of B, what does 'P + Q × R' mean?", "P is the uncle of R", 1, "P is the brother of R", 0],
+            ["5. Vocabulary: Which word is the closest synonym for 'Meticulous'?", "Careful", 1, "Careless", 0]
         ];
     }
+
+
 
     questions.forEach((q,i)=>{
         container.innerHTML+=`
