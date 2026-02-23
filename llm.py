@@ -11,24 +11,26 @@ llm = ChatGoogleGenerativeAI(
 )
 
 def generate_career_recommendation(data):
-    # Properly indented the function body
-    prompt = f"""
+  
+ prompt = f"""
 You are an expert AI Career Counselor.
 
 Student Information:
 Name: {data['name']}
 Stream: {data['stream']}
 Education Level: {data['education_level']}
+Career Category: {data['level_modifier']}
 Hobbies: {data['hobbies']}
 Favorite Subject: {data['favorite_subject']}
 Work Preference: {data['work_preference']}
+Interests: {data['interest_answers']}
+Personality: {data['personality_answers']}
 Aptitude Score: {data['aptitude_score']} out of 5
 
 Instructions:
 - NO conversational greetings or intro paragraphs. Start immediately with the careers.
 - Output the response in clean, structured Markdown format.
 - Keep descriptions extremely brief and to the point.
-- For the 'Resources' section, generate real, clickable Markdown search links for Coursera and YouTube using the career name as the search query. Format them EXACTLY as shown in the template.
 
 Format each of the 3 careers EXACTLY like this template:
 
@@ -37,7 +39,6 @@ Format each of the 3 careers EXACTLY like this template:
 * **Required Skills:** [Comma-separated list of 3-4 key skills]
 * **Roadmap:** [Exactly 1 brief sentence on the next step to take]
 * **Future Scope:** [Exactly 1 brief sentence on industry demand]
-* **Resources:** 📚 [Find Courses on Coursera](https://www.coursera.org/search?query=[Insert+Career+Name]) | 🎥 [Watch Tutorials on YouTube](https://www.youtube.com/results?search_query=[Insert+Career+Name])
 """
-    response = llm.invoke(prompt)
-    return response.content
+ response = llm.invoke(prompt)
+ return response.content 
