@@ -7,37 +7,24 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     
     <style>
-        /* Hide buttons when saving to PDF */
         @media print {
             .no-print { display: none !important; }
             body { background: white; color: black; }
             .prose-invert { filter: invert(1); }
         }
 
-        /* Custom styling to make the AI output look highly structured and compact */
         .custom-prose h3 {
-            color: #60a5fa; /* Bright Blue */
+            color: #60a5fa; 
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
             font-size: 1.25rem;
             border-bottom: 1px solid #1e3a8a;
             padding-bottom: 0.25rem;
         }
-        .custom-prose p {
-            margin-top: 0.25rem;
-            margin-bottom: 0.5rem;
-        }
-        .custom-prose ul {
-            margin-top: 0.25rem;
-            margin-bottom: 1.25rem;
-        }
-        .custom-prose li {
-            margin-top: 0.15rem;
-            margin-bottom: 0.15rem;
-        }
-        .custom-prose strong {
-            color: #93c5fd; /* Light Blue for bold text */
-        }
+        .custom-prose p { margin-top: 0.25rem; margin-bottom: 0.5rem; }
+        .custom-prose ul { margin-top: 0.25rem; margin-bottom: 1.25rem; }
+        .custom-prose li { margin-top: 0.15rem; margin-bottom: 0.15rem; }
+        .custom-prose strong { color: #93c5fd; }
     </style>
 </head>
 
@@ -62,24 +49,76 @@
             </a>
         </div>
 
+        <div class="mt-12 bg-slate-900/50 p-6 rounded-xl border border-slate-700 text-center no-print">
+            <div id="ratingBox">
+                <h3 class="text-2xl font-bold text-blue-400 mb-2">Rate Your Experience</h3>
+                <p class="text-slate-400 mb-4 text-sm">Did you find these career suggestions helpful?</p>
+                
+                <div class="flex justify-center gap-2 mb-4" id="starContainer">
+                    <button onclick="rate(1)" class="text-4xl text-slate-600 hover:text-yellow-400 transition" id="star1">★</button>
+                    <button onclick="rate(2)" class="text-4xl text-slate-600 hover:text-yellow-400 transition" id="star2">★</button>
+                    <button onclick="rate(3)" class="text-4xl text-slate-600 hover:text-yellow-400 transition" id="star3">★</button>
+                    <button onclick="rate(4)" class="text-4xl text-slate-600 hover:text-yellow-400 transition" id="star4">★</button>
+                    <button onclick="rate(5)" class="text-4xl text-slate-600 hover:text-yellow-400 transition" id="star5">★</button>
+                </div>
+                
+                <textarea id="feedbackText" placeholder="Tell us what you liked or how we can improve! (Optional)" class="w-full max-w-md mx-auto bg-black border border-slate-700 rounded-lg p-3 text-white focus:border-blue-500 outline-none mb-4 hidden"></textarea>
+                
+                <br>
+                <button id="submitFeedback" onclick="submitRating()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2 rounded-lg font-bold transition hidden mx-auto">Submit Feedback</button>
+            </div>
+
+            <div id="feedbackThanks" class="text-green-400 font-bold hidden text-xl py-6">
+                🎉 Thank you! Your feedback helps us improve SkillSync.
+            </div>
+        </div>
+
     </div>
 
     <script>
+        // --- RESULT LOADING LOGIC ---
         window.onload = function() {
-            // 1. Grab the raw text from memory
             const savedResult = localStorage.getItem("careerResult");
             const displayDiv = document.getElementById("displayResult");
 
             if (savedResult) {
-                // 2. Convert Markdown to HTML and inject it
                 displayDiv.innerHTML = marked.parse(savedResult);
-                
-                // 3. Clear memory
                 localStorage.removeItem("careerResult");
             } else {
                 displayDiv.innerHTML = "<p>No results found. Please take the assessment first!</p>";
             }
         };
+
+        // --- RATING LOGIC ---
+        let currentRating = 0;
+
+        function rate(stars) {
+            currentRating = stars;
+            
+            // Light up the stars
+            for(let i=1; i<=5; i++) {
+                const star = document.getElementById(`star${i}`);
+                if(i <= stars) {
+                    star.classList.remove('text-slate-600');
+                    star.classList.add('text-yellow-400');
+                } else {
+                    star.classList.remove('text-yellow-400');
+                    star.classList.add('text-slate-600');
+                }
+            }
+            
+            // Reveal the text box and submit button
+            document.getElementById('feedbackText').classList.remove('hidden');
+            document.getElementById('submitFeedback').classList.remove('hidden');
+        }
+
+        function submitRating() {
+            // In a real app, you would send 'currentRating' and 'feedbackText.value' to the backend here.
+            // For the hackathon, showing the success UI is perfect!
+            
+            document.getElementById('ratingBox').classList.add('hidden');
+            document.getElementById('feedbackThanks').classList.remove('hidden');
+        }
     </script>
 
 </body>
